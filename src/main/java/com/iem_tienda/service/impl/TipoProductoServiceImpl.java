@@ -13,32 +13,40 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-public abstract class TipoProductoServiceImpl implements TipoProductoService {
-
+public class TipoProductoServiceImpl 
+        implements TipoProductoService{
+    
     @Autowired
     private TipoProductoDAO tipoProductoDAO;
-
+    
     @Override
     @Transactional(readOnly = true)
-    public List<TipoProducto> getTiposProducto() {
-        return tipoProductoDAO.findAll();
+    public List<TipoProducto> getTiposProducto(boolean activo) {
+        var lista=tipoProductoDAO.findAll();
+        if (activo){
+            lista.removeIf(c -> !c.isActivo());
+        }
+        return lista;
     }
 
     @Override
     @Transactional(readOnly = true)
-    public TipoProducto getTipoProducto(Long idTipoProducto) {
-        return tipoProductoDAO.findById(idTipoProducto).orElse(null);
+    public TipoProducto getTipoProducto(TipoProducto tipoProducto) {
+        return tipoProductoDAO.findById(tipoProducto.getIdTipoProducto()).orElse(null);
     }
 
+    @Override
     @Transactional
-    public void save(TipoProducto tipoProducto) {
+    public void saveTipoProducto(TipoProducto tipoProducto) {
         tipoProductoDAO.save(tipoProducto);
     }
 
+    @Override
     @Transactional
-    public void delete(Long idTipoProducto) {
-        tipoProductoDAO.deleteById(idTipoProducto);
+    public void deleteTipoProducto(TipoProducto tipoProducto) {
+        tipoProductoDAO.delete(tipoProducto);
     }
+    
 }
 
 

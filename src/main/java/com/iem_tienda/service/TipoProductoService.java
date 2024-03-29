@@ -11,14 +11,14 @@ import java.util.List;
 public interface TipoProductoService {
 
     // Obtener todos los tipos de producto
-    public List<TipoProducto> getTiposProducto();
+    public List<TipoProducto> getTiposProducto(boolean activo);
 
     // Obtener un tipo de producto por su ID
-    public TipoProducto getTipoProducto(Long id);
+    public TipoProducto getTipoProducto(TipoProducto tipoProducto);
 
     // Guardar o actualizar un tipo de producto
     public void saveTipoProducto(TipoProducto tipoProducto);
 
     // Eliminar un tipo de producto
-    public void deleteTipoProducto(Long id);
+    public void deleteTipoProducto(TipoProducto tipoProducto);
 }

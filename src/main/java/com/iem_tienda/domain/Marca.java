@@ -22,4 +22,5 @@ public class Marca implements Serializable {
 
     private String descripcion;
     private String rutaImagen;
+    private boolean activo;
 }

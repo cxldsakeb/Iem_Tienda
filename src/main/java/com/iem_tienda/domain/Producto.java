@@ -6,26 +6,32 @@ package com.iem_tienda.domain;
 
 import jakarta.persistence.*;
 import java.io.Serializable;
-import java.util.List;
 import lombok.Data;
+
+/**
+ *
+ * @author jose1
+ */
 
 @Data
 @Entity
-@Table(name = "tipo_producto")
-public class TipoProducto implements Serializable {
-
-    private static final long serialVersionUID = 1L;
-
+@Table(name="producto")
+public class Producto implements Serializable{
+    private static final long serialVersionUID= 1L;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_tipo_producto")
-    private Long idTipoProducto;
-
+    @Column(name = "id_producto")
+    private long IdProducto;
+    private String nombre;
     private String descripcion;
-    private String rutaImagen;
+    private double precio;
+    private int stock;
+    private String ruta_imagen;
     private boolean activo;
     
-    @OneToMany
-    @JoinColumn(name="id_categoria",updatable = false)
-    private List<Producto> productos;
+    @ManyToOne
+    @JoinColumn(name="id_tipo_producto")
+    private TipoProducto tipoProducto;
+    
 }
