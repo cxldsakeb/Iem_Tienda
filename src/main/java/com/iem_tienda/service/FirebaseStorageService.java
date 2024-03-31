@@ -7,7 +7,7 @@ public interface FirebaseStorageService {
     String cargaImagen(MultipartFile archivoLocalCliente, String carpeta, Long id);
 
     // El BucketName es el <id_del_proyecto> + ".appspot.com"
-    final String BucketName = "sonicwavecr.appspot.com";
+    final String BucketName = "iem-tienda.appspot.com";
 
     // Esta es la ruta básica de este proyecto SonicWave
     final String rutaSuperiorStorage = "sonicwavecr";
@@ -16,5 +16,5 @@ public interface FirebaseStorageService {
     final String rutaJsonFile = "firebase";
 
     // El nombre del archivo Json
-    final String archivoJsonFile = "sonicwavecr-firebase-adminsdk.json";
+    final String archivoJsonFile = "iem-tienda-firebase-adminsdk-bp9os-71a7ffe6b8";
 }

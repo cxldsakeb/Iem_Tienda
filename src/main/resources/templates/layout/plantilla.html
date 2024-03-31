@@ -57,7 +57,28 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 </div>
             </nav>
         </header>
-        <footer th:fragment="footer" class="bg-dark text-white mt-5 p-2">
+        <section th:fragment="listadoProductos" id="productos" style="background-color: black">
+            <div class="row row-cols-4">
+                <div class="card" th:each="p : ${productos}">
+                    <figure>
+                        <img th:src="${p.ruta_imagen}"
+                             class="card-img-top"
+                             height="200" 
+                             alt="alt"/>
+                        <figcaption>
+                            $[[${p.precio}]] ([[${p.stock}]])
+                        </figcaption>
+                    </figure>
+                    <div class="card-header">
+                        <h4>[[${p.nombre}]]</h4>
+                    </div>
+                    <div class="card-body">
+                        <p>[[${p.descripcion}]]</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <footer th:fragment="footer" class="bg-dark text-white mt-5 p-2" style="background-color: black">
             <div class="container">
                 <div class="col">
                     <p>&COPY [[#{plantilla.derechos}]]</p>
