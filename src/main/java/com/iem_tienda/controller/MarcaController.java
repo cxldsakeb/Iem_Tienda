@@ -8,7 +8,8 @@ package com.iem_tienda.controller;
 
 import com.iem_tienda.domain.Marca;
 import com.iem_tienda.service.MarcaService;
-//import com.iem_tienda.service.impl.FirebaseStorageServiceImpl;
+import com.iem_tienda.service.impl.FirebaseStorageServiceImpl;
+import com.iem_tienda.service.impl.MarcaServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,44 +23,48 @@ import org.springframework.web.multipart.MultipartFile;
 @RequestMapping("/marca")
 public class MarcaController {
 
-//    @Autowired
-//    private MarcaService marcaService;
-//
-////     "/marca/listado"
-//    @GetMapping("/listado")
-//    public String listado(Model model) {
-//        var lista = marcaService.getMarcas();
-//        model.addAttribute("marcas", lista);
-//        model.addAttribute("totalMarcas", lista.size());
-//        return "/marca/listado";
-//    }
-//
-//    @Autowired
-//    //private FirebaseStorageServiceImpl firebaseStorageServiceImpl;
-//
-//    @PostMapping("/guardar")
-//    public String guardar(Marca marca,
-//            @RequestParam("imagenFile") MultipartFile imagenFile) {
-//        if (!imagenFile.isEmpty()) {
-//            // Se debe subir la imagen
-//            marcaService.saveMarca(marca);
-//            String rutaImagen = firebaseStorageServiceImpl.cargaImagen(imagenFile, "marca", marca.getIdMarca());
-//            marca.setRutaImagen(rutaImagen);
-//        }
-//        marcaService.saveMarca(marca);
-//        return "redirect:/marca/listado";
-//    }
-//
-//    @GetMapping("/modificar/{idMarca}")
-//    public String modifica(Marca marca, Model model) {
-//        marca = marcaService.getMarca(marca.getIdMarca());
-//        model.addAttribute("marca", marca);
-//        return "/marca/modifica";
-//    }
-//
-//    @GetMapping("/eliminar/{idMarca}")
-//    public String elimina(Marca marca) {
-//        marcaService.deleteMarca(marca.getIdMarca());
-//        return "redirect:/marca/listado";
-//    }
+@Autowired
+    private MarcaService marcaService;
+
+    // "/tipo-producto/listado"
+    @GetMapping("/listado")
+    public String listado(Model model) {
+        var lista = marcaService.getMarcas(false);
+        model.addAttribute("marca", lista);
+        model.addAttribute("t", lista.size());
+        return "/marca/listado";
+    }
+
+    
+    private FirebaseStorageServiceImpl firebaseStorageServiceImpl;
+
+    @PostMapping("/guardar")
+    public String guardar(Marca marca,
+            @RequestParam("imagenFile") MultipartFile imagenFile) {
+
+        if (!imagenFile.isEmpty()) {
+            //Se debe subir la imagen
+            marcaService.saveMarca(marca);
+            String ruta_imagen = firebaseStorageServiceImpl.cargaImagen(imagenFile, "marca", marca.getIdMarca());
+            marca.setRuta_imagen(ruta_imagen);
+
+        }
+        marcaService.saveMarca(marca);
+
+        return "redirect:/marca/listado";
+
+    }
+
+    @GetMapping("/modificar/{idMarca}")
+    public String modifica(Marca marca, Model model) {
+        marca = marcaService.getMarca(marca);
+        model.addAttribute("marca", marca);
+        return "/marca/modifica";
+    }
+
+    @GetMapping("/eliminar/{idMarca}")
+    public String elimina(Marca marca) {
+        marcaService.deleteMarca(marca);
+        return "redirect:/marca/listado";
+    }
 }

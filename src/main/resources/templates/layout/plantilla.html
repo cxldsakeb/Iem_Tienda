@@ -16,7 +16,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
         <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
     </head>
-    <body>
+    <body style="background-color: black">
         <header th:fragment="header">
             <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0">
                 <div class="container">
@@ -50,21 +50,56 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                             <li class="nav-item px-2"><a class="nav-link text-white" th:href="@{/producto/listado}">[[#{plantilla.productos}]]</a></li>                           
                             <li class="nav-item px-2"><a class="nav-link text-white" th:href="@{/producto/listado}">[[#{plantilla.soporte}]]</a></li>
                             <li class="nav-item px-2"><a class="nav-link text-white" th:href="@{/producto/listado}">[[#{plantilla.cuenta}]]</a></li>                           
-                            <li class="nav-item px-2"><a class="nav-link text-white" th:href="@{/producto/listado}">[[#{plantilla.monitorear}]]</a></li>                           
+                            <li class="nav-item px-2"><a class="nav-link text-white" th:href="@{/producto/listado}">[[#{plantilla.monitorear}]]</a></li>
+                            <li class="nav-item px-2"><a class="nav-link text-white" th:href="@{/producto/listado}">[[#{plantilla.agregarproducto}]]</a></li>
+                            <li class="nav-item px-2"><a class="nav-link text-white" th:href="@{/producto/listado}">[[#{plantilla.agregartipo}]]</a></li>
                         </ul>
 
                     </div>
                 </div>
             </nav>
         </header>
+        <aside th:fragment="filtros">
+            <div class="row p-4">
+                <div class="col-md-4">
+                    <form method="post" th:action="@{/query1}">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="mb-3">
+                                    <label for="precioInf">[[#{pruebas.precio.inferior}]]</label>
+                                    <input type="number" class="form-control"
+                                           th:value="${precioInf}"
+                                           th:name="precioInf"
+                                           required="true"/>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="precioSup">[[#{pruebas.precio.superior}]]</label>
+                                    <input type="number" class="form-control"
+                                           th:value="${precioSup}"
+                                           th:name="precioSup"
+                                           required="true"/>
+                                </div>
+                            </div>
+                            <div class="card-footer text center">
+                                <button type="submit"
+                                        class="btn btn-primary">
+                                    <i class="fas fa-check"></i> [[#{pruebas.ampliadas}]]
+                                </button>
+                            </div>
+                        </div> 
+                    </form>
+                </div>
+            </div>
+        </aside>
         <section th:fragment="listadoProductos" id="productos" style="background-color: black">
             <div class="row row-cols-4">
                 <div class="card" th:each="p : ${productos}">
                     <figure>
                         <img th:src="${p.ruta_imagen}"
                              class="card-img-top"
-                             height="200" 
-                             alt="alt"/>
+                             height="300" 
+                             />
                         <figcaption>
                             $[[${p.precio}]] ([[${p.stock}]])
                         </figcaption>

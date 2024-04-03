@@ -20,14 +20,12 @@ public class MarcaServiceImpl implements MarcaService {
 
     @Override
     @Transactional(readOnly = true)
-    public List<Marca> getMarcas() {
-        return marcaDAO.findAll();
-    }
-
-    @Override
-    @Transactional(readOnly = true)
-    public Marca getMarca(Long id) {
-        return marcaDAO.findById(id).orElse(null);
+    public List<Marca> getMarcas(boolean activo) {
+        var lista = marcaDAO.findAll();
+        if (activo) {
+            lista.removeIf(c -> !c.isActivo());
+        }
+        return lista;
     }
 
     @Override
@@ -37,9 +35,15 @@ public class MarcaServiceImpl implements MarcaService {
     }
 
     @Override
+    @Transactional(readOnly = true)
+    public Marca getMarca(Marca marca) {
+        return marcaDAO.findById(marca.getIdMarca()).orElse(null);
+    }
+
+    @Override
     @Transactional
-    public void deleteMarca(Long id) {
-        marcaDAO.deleteById(id);
+    public void deleteMarca(Marca marca) {
+        marcaDAO.delete(marca);
     }
 }
 

@@ -6,6 +6,7 @@ package com.iem_tienda.domain;
 
 import jakarta.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 import lombok.Data;
 
 @Data
@@ -18,9 +19,12 @@ public class Marca implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_marca")
-    private Long idMarca;
-
-    private String descripcion;
-    private String rutaImagen;
+    private Long IdMarca;
+    private String nombre;
+    private String ruta_imagen;
     private boolean activo;
+    
+    @OneToMany
+    @JoinColumn(name="id_producto",updatable = false)
+    private List<Producto> productos;
 }

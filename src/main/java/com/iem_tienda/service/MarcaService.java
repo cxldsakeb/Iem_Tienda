@@ -11,14 +11,14 @@ import java.util.List;
 public interface MarcaService {
 
     // Obtener todas las marcas
-    public List<Marca> getMarcas();
+    public List<Marca> getMarcas(boolean activo);
 
     // Obtener una marca por su ID
-    public Marca getMarca(Long id);
+    public Marca getMarca(Marca marca);
 
     // Guardar o actualizar una marca
     public void saveMarca(Marca marca);
 
     // Eliminar una marca
-    public void deleteMarca(Long id);
+    public void deleteMarca(Marca marca);
 }

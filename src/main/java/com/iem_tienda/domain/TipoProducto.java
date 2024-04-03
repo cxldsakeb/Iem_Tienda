@@ -26,6 +26,6 @@ public class TipoProducto implements Serializable {
     private boolean activo;
     
     @OneToMany
-    @JoinColumn(name="id_categoria",updatable = false)
+    @JoinColumn(name="id_producto",updatable = false)
     private List<Producto> productos;
 }

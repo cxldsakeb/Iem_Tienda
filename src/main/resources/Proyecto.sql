@@ -20,6 +20,7 @@ CREATE TABLE sonicwavecr.marca (
 id_marca INT NOT NULL AUTO_INCREMENT,
 nombre VARCHAR(50) NOT NULL,
 activo bool,
+ruta_imagen VARCHAR(1024),
 PRIMARY KEY (id_marca))
 ENGINE = InnoDB 
 DEFAULT CHARACTER SET = utf8mb4;
@@ -65,15 +66,15 @@ INSERT INTO sonicwavecr.tipo_producto (descripcion, ruta_imagen, activo) VALUES
 ('Headphones', 'https://example.com/truthear-dac1000.jpg', 1),
 ('TWS', 'https://example.com/truthear-dac1000.jpg', 1);
 
-INSERT INTO sonicwavecr.marca (nombre) VALUES
-('TrutHear'),
-('Thangzu'),
-('Moondrop'),
-('KZ'),
-('Dunu'),
-('FiiO'),
-('Blon'),
-('Seenheiser');
+INSERT INTO sonicwavecr.marca (nombre,ruta_imagen,activo) VALUES
+('TrutHear','https://pbs.twimg.com/profile_images/1570252647852298242/anFNz2Xk_400x400.jpg',true),
+('Thangzu','https://thehificat.com/cdn/shop/products/Sfeee0291c664422191be80dfc66c1a969.jpg?v=1685783422',true),
+('Moondrop','https://assets-global.website-files.com/625fb843a8046c1c7861d89e/6444f9b0103dd275379dfe20_BRAND-SMALL.jpg',true),
+('KZ','https://www.shutterstock.com/shutterstock/photos/2227880227/display_1500/stock-vector-minimal-zk-logo-icon-of-a-kz-letter-on-a-luxury-background-logo-idea-based-on-the-zk-monogram-2227880227.jpg',true),
+('Dunu','https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDSH-Ju8un8yJ_K4BG3xIiR2nOhK-tCw7_bJRfE_uHRA&s',true),
+('FiiO','https://www.mtmtaudio.com/cdn/shop/collections/fiio-logo.jpg?v=1543986356',true),
+('Blon','https://m.media-amazon.com/images/I/51M4aXzE5HL._AC_UF894,1000_QL80_.jpg',true),
+('Seenheiser','https://vectorseek.com/wp-content/uploads/2020/12/Sennheiser-Logo-Vector-scaled.jpg',true);
 
 INSERT INTO sonicwavecr.producto (nombre,id_tipo_producto,id_marca,descripcion,precio,stock,ruta_imagen,activo) VALUES
 ('TrutHear DAC-1000',1,1,'High-Resolution Digital-to-Analog Converter',249.99,10,'https://ae01.alicdn.com/kf/S8f983c31ec9c43539f3caccd193878b2B.jpg_640x640Q90.jpg_.webp',true),

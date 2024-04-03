@@ -34,4 +34,5 @@ public class Producto implements Serializable{
     @JoinColumn(name="id_tipo_producto")
     private TipoProducto tipoProducto;
     
+    
 }

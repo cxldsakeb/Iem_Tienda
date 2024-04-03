@@ -23,9 +23,4 @@ public interface ProductoService {
     
     public List<Producto> metodoJPA(double precioInf, double precioSup);
     
-    public List<Producto>metodoJPQL( double precioInf, double precioSup);
-            
-    public List<Producto>metodoSQL(double precioInf, double precioSup);
-            
-    public List<Producto> metodoJPA2(int existenciasInf, int existenciasSup);
 }
