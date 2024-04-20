@@ -34,5 +34,7 @@ public class Producto implements Serializable{
     @JoinColumn(name="id_tipo_producto")
     private TipoProducto tipoProducto;
     
-    
+    @ManyToOne
+    @JoinColumn(name="id_marca")
+    private Marca marca;
 }

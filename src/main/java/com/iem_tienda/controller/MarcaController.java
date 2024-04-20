@@ -23,19 +23,18 @@ import org.springframework.web.multipart.MultipartFile;
 @RequestMapping("/marca")
 public class MarcaController {
 
-@Autowired
+    @Autowired
     private MarcaService marcaService;
 
-    // "/tipo-producto/listado"
     @GetMapping("/listado")
     public String listado(Model model) {
         var lista = marcaService.getMarcas(false);
         model.addAttribute("marca", lista);
         model.addAttribute("t", lista.size());
-        return "/marca/listado";
+        return "/agregarmarca/listado";
     }
 
-    
+    @Autowired
     private FirebaseStorageServiceImpl firebaseStorageServiceImpl;
 
     @PostMapping("/guardar")
@@ -59,7 +58,7 @@ public class MarcaController {
     public String modifica(Marca marca, Model model) {
         marca = marcaService.getMarca(marca);
         model.addAttribute("marca", marca);
-        return "/marca/modifica";
+        return "/agregarmarca/modifica";
     }
 
     @GetMapping("/eliminar/{idMarca}")

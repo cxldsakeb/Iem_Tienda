@@ -32,10 +32,10 @@ public class TipoProductoController {
         var lista = tipoProductoService.getTiposProducto(false);
         model.addAttribute("tiposProducto", lista);
         model.addAttribute("totalTiposProducto", lista.size());
-        return "/tipo-producto/listado";
+        return "/agregartipo/listado";
     }
 
-    
+    @Autowired
     private FirebaseStorageServiceImpl firebaseStorageServiceImpl;
 
     @PostMapping("/guardar")
@@ -55,7 +55,7 @@ public class TipoProductoController {
     public String modifica(TipoProducto tipoProducto, Model model) {
         tipoProducto = tipoProductoService.getTipoProducto(tipoProducto);
         model.addAttribute("tipoProducto", tipoProducto);
-        return "/tipo-producto/modifica";
+        return "/agregartipo/modifica";
     }
 
     @GetMapping("/eliminar/{idTipoProducto}")

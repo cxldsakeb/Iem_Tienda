@@ -5,6 +5,7 @@
 package com.iem_tienda.controller;
 
 import com.iem_tienda.domain.Producto;
+import com.iem_tienda.service.MarcaService;
 import com.iem_tienda.service.ProductoService;
 import com.iem_tienda.service.TipoProductoService;
 import com.iem_tienda.service.impl.FirebaseStorageServiceImpl;
@@ -29,6 +30,8 @@ public class AgregarProductoController {
     private ProductoService productoService;
     @Autowired
     private TipoProductoService tipoProductoService;
+    @Autowired 
+    private MarcaService marcaservice;
 
     // "/producto/listado"
     @GetMapping("/listado")
@@ -41,6 +44,8 @@ public class AgregarProductoController {
         //Para poder hacer los options del select...
         var tipoProductos = tipoProductoService.getTiposProducto(true);
         model.addAttribute("tipoProductos", tipoProductos);
+        var marcas = marcaservice.getMarcas(true);
+        model.addAttribute("marcas",marcas);
 
         return "/agregarproducto/listado";
     }
@@ -61,6 +66,8 @@ public class AgregarProductoController {
         //Para poder hacer los options del select...
         var tipoProductos = tipoProductoService.getTiposProducto(true);
         model.addAttribute("tipoProductos", tipoProductos);
+        var marcas = marcaservice.getMarcas(true);
+        model.addAttribute("marcas",marcas);
 
         return "/agregarproducto/listado";
     }
@@ -69,7 +76,9 @@ public class AgregarProductoController {
     public String modifica(Producto producto, Model model) {
         //Para poder hacer los options del select...
         var tipoProductos = tipoProductoService.getTiposProducto(true);
-        model.addAttribute("categorias", tipoProductos);
+        model.addAttribute("tipoProductos", tipoProductos);
+        var marcas = marcaservice.getMarcas(true);
+        model.addAttribute("marcas",marcas);
         producto = productoService.getProducto(producto);
         model.addAttribute("producto", producto);
         return "/agregarproducto/modifica";
