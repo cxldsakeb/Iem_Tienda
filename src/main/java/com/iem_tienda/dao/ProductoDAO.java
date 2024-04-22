@@ -17,4 +17,8 @@ public interface ProductoDAO extends JpaRepository<Producto, Long> {
     public List<Producto> findByPrecioBetweenOrderByDescripcion(
             double precioInf, double precioSup);
     
+    public List<Producto> findByTipoProducto_IdTipoProducto(Long tipoProductoId);
+    
+    public List<Producto> findByMarca_IdMarca(Long marcaId);
+    
 }

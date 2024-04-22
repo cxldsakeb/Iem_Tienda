@@ -23,4 +23,8 @@ public interface ProductoService {
     
     public List<Producto> metodoJPA(double precioInf, double precioSup);
     
+    public List<Producto> getProductoPorTipoProducto(Long tipoProductoId);
+    
+    public List<Producto> getProductoPorMarca(Long marcaId);
+    
 }

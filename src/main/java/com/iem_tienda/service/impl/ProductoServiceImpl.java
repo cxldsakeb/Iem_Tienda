@@ -55,4 +55,16 @@ public class ProductoServiceImpl implements ProductoService {
     public List<Producto> metodoJPA(double precioInf, double precioSup) {
          return productoDAO.findByPrecioBetweenOrderByDescripcion(precioInf, precioSup);
     }
+
+    @Override
+    @Transactional
+    public List<Producto> getProductoPorTipoProducto(Long tipoProductoId) {
+        return productoDAO.findByTipoProducto_IdTipoProducto(tipoProductoId);
+    }
+
+    @Override
+    @Transactional
+    public List<Producto> getProductoPorMarca(Long marcaId) {
+        return productoDAO.findByMarca_IdMarca(marcaId);
+    }
 }

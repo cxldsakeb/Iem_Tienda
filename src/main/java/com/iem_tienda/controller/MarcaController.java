@@ -30,7 +30,7 @@ public class MarcaController {
     public String listado(Model model) {
         var lista = marcaService.getMarcas(false);
         model.addAttribute("marca", lista);
-        model.addAttribute("t", lista.size());
+        model.addAttribute("totalMarcas", lista.size());
         return "/agregarmarca/listado";
     }
 

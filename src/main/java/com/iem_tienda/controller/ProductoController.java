@@ -4,10 +4,14 @@
  */
 package com.iem_tienda.controller;
 
+import com.iem_tienda.domain.Marca;
 import com.iem_tienda.domain.Producto;
+import com.iem_tienda.domain.TipoProducto;
 import com.iem_tienda.service.ProductoService;
 import com.iem_tienda.service.TipoProductoService;
+import com.iem_tienda.service.MarcaService;
 import com.iem_tienda.service.impl.FirebaseStorageServiceImpl;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,13 +26,14 @@ import org.springframework.web.multipart.MultipartFile;
  * @author jose1
  */
 @Controller
-@RequestMapping("/")
 public class ProductoController {
 
     @Autowired
     private ProductoService productoService;
     @Autowired
     private TipoProductoService tipoProductoService;
+    @Autowired
+    private MarcaService marcaService;
 
     // "/producto/listado"
     @GetMapping("/")
@@ -44,6 +49,33 @@ public class ProductoController {
 
         return "index";
     }
+    
+    @GetMapping("/queryTipos/{idTipoProducto}")
+    public String queryTipos(TipoProducto tipoProducto,Model model) {
+        tipoProducto = tipoProductoService.getTipoProducto(tipoProducto);
+        var productos = tipoProducto.getProductos();
+        model.addAttribute("productos", productos);
+  
+        //Para poder hacer los options del select...
+        var tipoProductos = tipoProductoService.getTiposProducto(true);
+        model.addAttribute("tipoProductos", tipoProductos);
+        
+        return "index";
+    }
+    
+    @GetMapping("/queryMarcas/{idMarca}")
+    public String queryMarcas(Marca marca,Model model) {
+        marca = marcaService.getMarca(marca);
+        var productos = marca.getProductos();
+        model.addAttribute("productos", productos);
+  
+        //Para poder hacer los options del select...
+        var marcas = marcaService.getMarcas(true);
+        model.addAttribute("marcas", marcas);
+        
+        return "index";
+    }
+    
     @Autowired
     private FirebaseStorageServiceImpl firebaseStorageServiceImpl;
     
@@ -58,6 +90,39 @@ public class ProductoController {
         model.addAttribute("precioInf",precioInf);
         model.addAttribute("precioSup",precioSup);
         return "index";
+    }
+    
+    @GetMapping("/productoPorTipoProducto")
+    public String productoPorTipoProducto(@RequestParam(name = "idTipoProducto", required = false) Long idTipoProducto, Model model) {
+        List<Producto> productos;
+        if (idTipoProducto != null) {
+            productos = productoService.getProductoPorTipoProducto(idTipoProducto);
+        } else {
+            productos = productoService.getProductos(true); // Obtener todos los juegos
+        }
+        model.addAttribute("productos", productos);
+
+        // Obtener todas las categorías y agregarlas al modelo
+        List<TipoProducto> tipoProductos = tipoProductoService.getTiposProducto(true);
+        model.addAttribute("tipoProductos", tipoProductos);
+
+        return "index"; // Ruta correcta para la vista de juegos
+    }
+    @GetMapping("/productoPorMarca")
+    public String productoPorMarca(@RequestParam(name = "idMarca", required = false) Long idMarca, Model model) {
+        List<Producto> productos;
+        if (idMarca != null) {
+            productos = productoService.getProductoPorMarca(idMarca);
+        } else {
+            productos = productoService.getProductos(true); // Obtener todos los juegos
+        }
+        model.addAttribute("productos", productos);
+
+        // Obtener todas las categorías y agregarlas al modelo
+        List<Marca> marcas = marcaService.getMarcas(true);
+        model.addAttribute("marcas", marcas);
+
+        return "index"; // Ruta correcta para la vista de juegos
     }
     
     

@@ -1,0 +1,29 @@
+body {
+    box-sizing: border-box;
+    margin: 0;
+    background-color: bisque;
+}
+
+
+aside {
+    position: fixed;
+    background-color: aquamarine;
+    color: black;
+    top: 100px;
+    left: 0;
+    bottom: 20px;
+    width: 20%;
+}
+
+
+section {
+    position: fixed;
+    overflow-y: scroll;
+    background-color: whitesmoke;
+    color: black;
+    top: 100px;
+    left: 20%;
+    bottom: 20px;
+    width: 80%;
+}
+

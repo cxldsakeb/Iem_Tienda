@@ -19,7 +19,7 @@ public class Marca implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_marca")
-    private Long IdMarca;
+    private Long idMarca;
     private String nombre;
     private String ruta_imagen;
     private boolean activo;

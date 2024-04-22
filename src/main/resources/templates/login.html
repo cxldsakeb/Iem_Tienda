@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<!-- Esta es mi primera pagina HTML
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+
+<html
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+    <head th:replace="~{layout/plantilla :: head}">
+        <title>lapagina</title>
+    </head>
+    <body>
+        <header th:replace="~{layout/plantilla :: header}"/>
+
+        <div class="row m-5 justify-content-md-center">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header bg-dark text-white">
+                        <h2>[[#{login.login}]]</h2>
+                    </div>
+                    <div class="card-body">
+                        <form method="post" th:action="@{/login}">
+                            <div class="row my-3 form-group">
+                                <label class="col-md-5" for="username">
+                                    <i class="fas fa-user-lock"></i> [[#{login.username}]]</label>
+                                <div class="col-md-7">
+                                    <input class="form-control" type="text" name="username"/><br/>
+                                </div>
+                            </div>
+                            <div class="row my-3 form-group">
+                                <label class="col-md-5" for="password">
+                                    <i class="fas fa-key"></i> [[#{login.password}]]</label>
+                                <div class="col-md-7">
+                                    <input class="form-control" type="password" name="password"/><br/>
+                                </div>
+                            </div>
+                            <div class="card-footer col text-center">
+                                <button class="btn btn-dark">
+                                    <a th:href="@{/registro/nuevo}" class="btn text-white">
+                                        <i class="fas fa-user-plus text-white"></i> [[#{accion.registrar}]]
+                                    </a>
+                                </button>
+                                <button class="btn btn-dark">
+                                    <a th:href="@{/registro/recordar}" class="btn text-white">
+                                        <i class="fas fa-envelope text-white"></i> [[#{accion.recordar}]]
+                                    </a>
+                                </button>
+                                <button class="btn btn-dark" type="submit">
+                                    <span class="btn text-white">
+                                        <i class="fas fa-sign-in-alt text-white"></i>
+                                        [[#{login.login}]]
+                                    </span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer th:replace="~{layout/plantilla :: footer} "/>
+
+    </body>
+</html>
