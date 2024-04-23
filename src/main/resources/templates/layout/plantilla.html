@@ -49,8 +49,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <ul class="navbar-nav">
                             <li class="nav-item px-2"><a class="nav-link text-white" th:href="@{/}">[[#{plantilla.productos}]]</a></li>                           
-                            <li class="nav-item px-2"><a class="nav-link text-white" th:href="@{/producto/listado}">[[#{plantilla.soporte}]]</a></li>
-                            <li class="nav-item px-2"><a class="nav-link text-white" th:href="@{/producto/listado}">[[#{plantilla.cuenta}]]</a></li>                           
+                            <li class="nav-item px-2"><a class="nav-link text-white" th:href="@{/contacto/contactos}">[[#{plantilla.soporte}]]</a></li>                     
                             <li class="nav-item px-2"><a class="nav-link text-white" th:href="@{/producto/listado}">[[#{plantilla.monitorear}]]</a></li>
                             <ul class="navbar-nav" sec:authorize="hasRole('ROLE_ADMIN')">
                                 <li class="nav-item px-2"><a class="nav-link text-white" th:href="@{/producto/listado}">[[#{plantilla.agregarproducto}]]</a></li>

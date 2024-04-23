@@ -29,7 +29,7 @@ public class MarcaController {
     @GetMapping("/listado")
     public String listado(Model model) {
         var lista = marcaService.getMarcas(false);
-        model.addAttribute("marca", lista);
+        model.addAttribute("marcas", lista);
         model.addAttribute("totalMarcas", lista.size());
         return "/agregarmarca/listado";
     }
