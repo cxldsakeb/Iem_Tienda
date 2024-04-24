@@ -46,7 +46,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                               method="POST" class="was-validated" enctype="multipart/form-data">
                             <div class="modal-body bg-dark text-white" style="color: white">
                                 <div class="mb-3">
-                                    <label for="tipoProducto">Tipo de Producto</label>
+                                    <label for="tipoProducto">[[#{producto.tipoP}]]</label>
                                     <select class="form-select" 
                                             name="tipoProducto.idTipoProducto"
                                             required="true">
@@ -56,7 +56,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                                     </select>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="nombre">Nombre</label>
+                                    <label for="nombre">[[#{producto.nombre}]]</label>
                                     <input type="text" class="form-control" name="nombre" required="true"/>
                                 </div>
                                 <div class="mb-3">
@@ -68,7 +68,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                                     <input type="number" class="form-control" name="precio" required="true"/>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="marca">Marca</label>
+                                    <label for="marca">[[#{producto.marca}]]</label>
                                     <select class="form-select" 
                                             name="marca.idMarca"
                                             required="true">
@@ -78,7 +78,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                                     </select>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="stock">[[#{producto.stock}]]</label>
+                                    <label for="stock">Stock</label>
                                     <input type="number" class="form-control" name="stock" required="true"/>
                                 </div>
                                 <div class="mb-3">
@@ -93,7 +93,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                             </div>
                             <div class="modal-footer bg-dark">
                                 <button class="btn text-white"
-                                        style="background-color: rgba(235, 52, 128, 1)" type="submit">Guardar</button>
+                                        style="background-color: rgba(235, 52, 128, 1)" type="submit">[[#{plantilla.guardar}]]</button>
                             </div>
                         </form>
                     </div>
@@ -108,20 +108,20 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                     <div class="col-md-9">
                         <div class="card">
                             <div class="card-header text-white bg-dark">
-                                <h4>Listado</h4>
+                                <h4>[[#{plantilla.listado}]]</h4>
                             </div>
                             <div th:if="${productos != null and !productos.empty}">
                                 <table class="table table-striped table-hover">
                                     <thead class="table-dark">
                                         <tr><th>#</th>
-                                            <th>Nombre</th>
+                                            <th>[[#{producto.nombre}]]</th>
                                             <th>[[#{producto.descripcion}]]</th>
-                                            <th>Precio</th>
-                                            <th>Marca</th>
-                                            <th>Stock</th>
-                                            <th>Total</th>
-                                            <th>Tipo Producto</th>
-                                            <th>Activo</th>
+                                            <th>[[#{producto.precio}]]</th>
+                                            <th>[[#{producto.marca}]]</th>
+                                            <th>[[#{producto.existencias}]]</th>
+                                            <th>[[#{producto.total}]]</th>
+                                            <th>[[#{producto.tipoP}]]</th>
+                                            <th>[[#{producto.activo}]]</th>
                                             <th></th></tr>
                                     </thead>
                                     <tbody class="table-dark">

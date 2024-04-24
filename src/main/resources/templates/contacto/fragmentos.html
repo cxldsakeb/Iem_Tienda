@@ -16,32 +16,32 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header text-white bg-dark" >
-                                <h4>Agregar Comentario de Soporte</h4>
-                                <label>Si tiene algun problema, o tiene un comentario para brindarnos su feedback, porfavor, utilice este apartado para ello</label>
+                                <h4>[[#{plantilla.comentarioT}]]</h4>
+                                <label>[[#{plantilla.comentarioD}]]</label>
                                 <h3> </h3>
-                                <label>En caso de tener un incoveniente, nos comunicaremos con usted en breve!</label>
+                                <label>[[#{plantilla.comentarioD2}]]</label>
                             </div>
                             <div class="card-body bg-dark" style="color: white;">
                                 <form th:action="@{/contacto/guardar}" method="post">
                                     <div class="mb-3">
-                                        <label for="nombre">Nombre</label>
+                                        <label for="nombre">[[#{plantilla.nombre}]]</label>
                                         <input type="text" class="form-control" id="nombre" name="nombre" required="required"/>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="apellido">Apellido</label>
+                                        <label for="apellido">[[#{plantilla.apellido}]]</label>
                                         <input type="text" class="form-control" id="apellido" name="apellido" required="required"/>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="numero">Número de teléfono</label>
+                                        <label for="numero">[[#{plantilla.numero}]]</label>
                                         <input type="number" class="form-control" id="numero" name="numero" required="required"/>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="mensaje">Mensaje</label>
+                                        <label for="mensaje">[[#{plantilla.mensaje}]]</label>
                                         <textarea class="form-control" id="mensaje" name="mensaje" rows="3" required="required"></textarea>
                                     </div>
                                     <div class="card-footer text center">
                                         <button class="btn text-white" type="submit"
-                                                style="background-color: rgba(235, 52, 128, 1)">Guardar</button>
+                                                style="background-color: rgba(235, 52, 128, 1)">[[#{plantilla.guardar}]]</button>
                                     </div>
                                 </form>
                             </div>
@@ -58,7 +58,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header bg-dark text-white">
-                                <h4>Listado de Mensajes</h4>
+                                <h4>[[#{plantilla.listadoM}]]</h4>
                             </div>
                             <div class="card-body bg-dark">
                                 <div th:if="${contactos != null and not #lists.isEmpty(contactos)}" class="table-responsive">
@@ -66,10 +66,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                                         <thead class="table-dark" >
                                             <tr>
                                                 <th>#</th>
-                                                <th>Nombre</th>
-                                                <th>Apellido</th>
-                                                <th>Numero de telefono</th>
-                                                <th>Comentario</th>
+                                                <th>[[#{plantilla.nombre}]]</th>
+                                                <th>[[#{plantilla.apellido}]]</th>
+                                                <th>[[#{plantilla.numero}]]</th>
+                                                <th>[[#{plantilla.mensaje}]]</th>
                                                 <th></th>
                                             </tr>
                                         </thead>

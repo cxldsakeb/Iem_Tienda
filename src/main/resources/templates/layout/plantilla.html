@@ -113,7 +113,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                                 <button type="submit"
                                         class="btn text-white"
                                         style="background-color: rgba(235, 52, 128, 1)">
-                                    <i class="fas fa-filter"></i> Filtrar por Precio
+                                    <i class="fas fa-filter"></i> [[#{plantilla.filtrarP}]]
                                 </button>
                             </div>
                         </div> 
@@ -125,9 +125,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                         <div class="card bg-dark" >
                             <div class="card-body" style="color: white; border: 2px white">
                                 <div class="mb-1">
-                                    <label for="idTipoProducto">Filtrar por Tipo de Producto</label>
+                                    <label for="idTipoProducto">[[#{plantilla.filtrarT}]]</label>
                                     <select name="idTipoProducto" class="form-select">
-                                        <option value="">Todos los Tipos</option>
+                                        <option value="">[[#{plantilla.todosT}]]</option>
                                         <option th:each="tipoProducto : ${tipoProductos}" th:value="${tipoProducto.idTipoProducto}" th:text="${tipoProducto.descripcion}"></option>
                                     </select>
                                 </div>
@@ -136,7 +136,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                                 <button type="submit" 
                                         class="btn text-white"
                                         style="background-color: rgba(235, 52, 128, 1)">
-                                    <i class="fas fa-filter"></i> Filtrar
+                                    <i class="fas fa-filter"></i> [[#{plantilla.filtrar}]]
                                 </button>
                             </div>
                         </div>
@@ -147,9 +147,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                         <div class="card bg-dark" >
                             <div class="card-body" style="color: white; border: 2px white">
                                 <div class="mb-1">
-                                    <label for="idMarca">Filtrar por Marca</label>
+                                    <label for="idMarca">[[#{plantilla.filtrarM}]]</label>
                                     <select name="idMarca" class="form-select">
-                                        <option value="">Todas las Marcas</option>
+                                        <option value="">[[#{plantilla.todosM}]]</option>
                                         <option th:each="marca : ${marcas}" th:value="${marca.idMarca}" th:text="${marca.nombre}"></option>
                                     </select>
                                 </div>
@@ -158,7 +158,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                                 <button type="submit" 
                                         class="btn text-white"
                                         style="background-color: rgba(235, 52, 128, 1)">
-                                    <i class="fas fa-filter"></i> Filtrar
+                                    <i class="fas fa-filter"></i> [[#{plantilla.filtrar}]]
                                 </button>
                             </div>
                         </div>
