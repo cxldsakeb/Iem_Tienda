@@ -7,12 +7,12 @@
     </head>
     <body>
         <!-- 1 Fragmento que se utiliza en la página para regresar -->
-        <section th:fragment="nuevoUsuario">
+        <section th:fragment="nuevoUsuario" class="bg-dark">
             <div class="row py-2 justify-content-center">
                 <div class="col-md-3">
                     <section>
                         <div class="col-md-4 d-grid">
-                            <a th:href="@{/login}" class="btn btn-primary">
+                            <a th:href="@{/login}" class="btn btn-danger">
                                 <i class="fas fa-arrow-left"></i> [[#{accion.regresar}]]
                             </a>
                         </div>
@@ -22,7 +22,8 @@
             <div class="row py-2 justify-content-center">
                 <div class="col-md-3">
                     <form method="POST" th:action="@{/registro/crearUsuario}" th:object="${usuario}" class="was-validated">
-                        <div class="card">
+                        <div class="card bg-dark"
+                                style="color: white">
                             <div class="card-header">
                                 <h4>[[#{usuario.agregar}]]</h4>
                             </div>
@@ -43,7 +44,8 @@
                                            name="correo" th:field="*{correo}"
                                            required="true"/></div></div>
                             <div class="card-footer text-end">                                                
-                                <button type="submit" class="btn btn-success">
+                                <button type="submit" class="btn text-white"
+                                style="background-color: rgba(235, 52, 128, 1)">
                                     <i class="fas fa-envelope"></i> [[#{usuario.activacion}]]
                                 </button></div>
                         </div>
@@ -99,12 +101,12 @@
         </section>
 
         <!-- 3 Fragmento que se utiliza recordar un usuario -->
-        <section th:fragment="recordarUsuario">
+        <section th:fragment="recordarUsuario" class="bg-dark">
             <div class="row py-2 justify-content-center">
                 <div class="col-md-3">
                     <section>
                         <div class="col-md-4 d-grid">
-                            <a th:href="@{/login}" class="btn btn-primary">
+                            <a th:href="@{/login}" class="btn btn-danger">
                                 <i class="fas fa-arrow-left"></i> [[#{accion.regresar}]]
                             </a>
                         </div>
@@ -116,7 +118,8 @@
                     <form method="POST"
                           th:action="@{/registro/recordarUsuario}" th:object="${usuario}"
                           class="was-validated">
-                        <div class="card">
+                        <div class="card bg-dark"
+                                style="color: white">
                             <div class="card-header">
                                 <h4>[[#{registro.recordar.us}]]</h4>
                             </div>
@@ -129,7 +132,8 @@
                                     <input type="email" class="form-control" name="correo" th:field="*{correo}"/></div>
                             </div>
                             <div class="card-footer text-end">                                                
-                                <button type="submit" class="btn btn-success">
+                                <button type="submit" class="btn text-white"
+                                style="background-color: rgba(235, 52, 128, 1)">
                                     <i class="fas fa-address-card"></i> [[#{registro.recordar.us}]]
                                 </button>
                             </div>

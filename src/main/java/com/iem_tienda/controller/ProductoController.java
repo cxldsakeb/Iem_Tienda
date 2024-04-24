@@ -49,83 +49,54 @@ public class ProductoController {
 
         return "index";
     }
-    
-    @GetMapping("/queryTipos/{idTipoProducto}")
-    public String queryTipos(TipoProducto tipoProducto,Model model) {
-        tipoProducto = tipoProductoService.getTipoProducto(tipoProducto);
-        var productos = tipoProducto.getProductos();
-        model.addAttribute("productos", productos);
-  
-        //Para poder hacer los options del select...
-        var tipoProductos = tipoProductoService.getTiposProducto(true);
-        model.addAttribute("tipoProductos", tipoProductos);
-        
-        return "index";
-    }
-    
-    @GetMapping("/queryMarcas/{idMarca}")
-    public String queryMarcas(Marca marca,Model model) {
-        marca = marcaService.getMarca(marca);
-        var productos = marca.getProductos();
-        model.addAttribute("productos", productos);
-  
-        //Para poder hacer los options del select...
-        var marcas = marcaService.getMarcas(true);
-        model.addAttribute("marcas", marcas);
-        
-        return "index";
-    }
-    
+
+
     @Autowired
     private FirebaseStorageServiceImpl firebaseStorageServiceImpl;
-    
+
     @PostMapping("/query1")
     public String consultaquery(
-            @RequestParam(value="precioInf") double precioInf,
-            @RequestParam(value="precioSup") double precioSup,
-            Model model){
-        
-        var lista = productoService.metodoJPA(precioInf,precioSup);
+            @RequestParam(value = "precioInf") double precioInf,
+            @RequestParam(value = "precioSup") double precioSup,
+            Model model) {
+
+        var lista = productoService.metodoJPA(precioInf, precioSup);
         model.addAttribute("productos", lista);
-        model.addAttribute("precioInf",precioInf);
-        model.addAttribute("precioSup",precioSup);
+        model.addAttribute("precioInf", precioInf);
+        model.addAttribute("precioSup", precioSup);
         return "index";
     }
-    
+
     @GetMapping("/productoPorTipoProducto")
     public String productoPorTipoProducto(@RequestParam(name = "idTipoProducto", required = false) Long idTipoProducto, Model model) {
         List<Producto> productos;
         if (idTipoProducto != null) {
             productos = productoService.getProductoPorTipoProducto(idTipoProducto);
         } else {
-            productos = productoService.getProductos(true); // Obtener todos los juegos
+            productos = productoService.getProductos(true); 
         }
         model.addAttribute("productos", productos);
-
-        // Obtener todas las categorías y agregarlas al modelo
         List<TipoProducto> tipoProductos = tipoProductoService.getTiposProducto(true);
         model.addAttribute("tipoProductos", tipoProductos);
 
-        return "index"; // Ruta correcta para la vista de juegos
+        return "index";
     }
+
     @GetMapping("/productoPorMarca")
     public String productoPorMarca(@RequestParam(name = "idMarca", required = false) Long idMarca, Model model) {
         List<Producto> productos;
         if (idMarca != null) {
             productos = productoService.getProductoPorMarca(idMarca);
         } else {
-            productos = productoService.getProductos(true); // Obtener todos los juegos
+            productos = productoService.getProductos(true);
         }
         model.addAttribute("productos", productos);
-
-        // Obtener todas las categorías y agregarlas al modelo
         List<Marca> marcas = marcaService.getMarcas(true);
         model.addAttribute("marcas", marcas);
 
-        return "index"; // Ruta correcta para la vista de juegos
+        return "index"; 
     }
-    
-    
+
     @GetMapping("/modificar/{idProducto}")
     public String modifica(Producto producto, Model model) {
         //Para poder hacer los options del select...
@@ -141,7 +112,6 @@ public class ProductoController {
         productoService.delete(producto);
         return "redirect:/producto/listado2";
     }
-    
 
     @PostMapping("/guardar")
     public String guardar(Producto producto,

@@ -11,16 +11,17 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
     </head>
     <body>
         <!-- 1 Sección para crear el boton de agregar... llamará a una ventana modal-->
-        <section th:fragment="botonesAgregar" class="py-4 mb-4 bg-light">
+        <section th:fragment="botonesAgregar" class="py-4  bg-dark">
             <div class="container">
                 <div class="row">
                     <div class="col-md-3">   
                         <button
                             sec:authorize="hasRole('ROLE_ADMIN')"
                             type="button" 
-                            class="btn btn-dark btn-block" 
+                            class="btn text-white btn-block" 
                             data-bs-toggle="modal" 
-                            data-bs-target="#agregarProducto">
+                            data-bs-target="#agregarProducto"
+                            style="background-color: rgba(235, 52, 128, 1)">
                             <i class="fas fa-plus"></i> [[#{producto.agregar}]]
                         </button>
                     </div>
@@ -43,7 +44,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                         </div> 
                         <form th:action="@{/producto/guardar}" th:object="${producto}"
                               method="POST" class="was-validated" enctype="multipart/form-data">
-                            <div class="modal-body">
+                            <div class="modal-body bg-dark text-white" style="color: white">
                                 <div class="mb-3">
                                     <label for="tipoProducto">Tipo de Producto</label>
                                     <select class="form-select" 
@@ -90,8 +91,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                                     <img id="blah" src="#" alt="your image" height="200"/>
                                 </div>
                             </div>
-                            <div class="modal-footer">
-                                <button class="btn btn-primary" type="submit">Guardar</button>
+                            <div class="modal-footer bg-dark">
+                                <button class="btn text-white"
+                                        style="background-color: rgba(235, 52, 128, 1)" type="submit">Guardar</button>
                             </div>
                         </form>
                     </div>
@@ -100,12 +102,12 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         </section>
 
         <!-- 3 Sección principal para mostrar la informaccion de la entidad producto -->
-        <section th:fragment="listadoProductos" id="productos">
-            <div class="container">
+        <section th:fragment="listadoProductos" id="productos" class="bg-dark">
+            <div class="container bg-dark ">
                 <div class="row">
                     <div class="col-md-9">
                         <div class="card">
-                            <div class="card-header">
+                            <div class="card-header text-white bg-dark">
                                 <h4>Listado</h4>
                             </div>
                             <div th:if="${productos != null and !productos.empty}">
@@ -122,7 +124,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                                             <th>Activo</th>
                                             <th></th></tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody class="table-dark">
                                         <tr th:each="producto, contador : ${productos}">
                                             <td>[[${contador.count}]]</td>
                                             <td>[[${producto.nombre}]]</td>
@@ -149,7 +151,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                         </div>
                     </div>
                     <div class="col-md-3">
-                        <div class="card text-center bg-dark text-white mb-3">
+                        <div class="card text-center text-white mb-3"
+                             style="background-color: rgba(235, 52, 128, 1)">
                             <div class="card-body">
                                 <h3>[[#{producto.total}]]</h3>
                                 <h4 class="fs-2"><i class="fas fa-users"></i> [[${totalProductos}]]</h4>
@@ -161,7 +164,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         </section>
 
         <!-- 4 Fragmento que se utiliza en la página modifca.html -->
-        <section th:fragment="editarProducto">
+        <section th:fragment="editarProducto" class="bg-dark">
             <div class="row">
                 <div class="col-md-2"></div>
                 <div class="col-md-8">
@@ -178,10 +181,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                                 <div class="row">
                                     <div class="col">
                                         <div class="card">
-                                            <div class="card-header">
+                                            <div class="card-header bg-dark text-white">
                                                 <h4>[[#{accion.actualizar}]]</h4>
                                             </div>
-                                            <div class="card-body">
+                                            <div class="card-body bg-dark"
+                                                 style="color: white">
                                                 <div class="mb-3">
                                                     <label for="tipoProducto">Tipo de Producto</label>
                                                     <select class="form-select" 
@@ -248,21 +252,24 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
 
         <!-- 5 Fragmento que se utiliza en el fragmento anterior -->
         <section th:fragment="botonesEditar">
-            <div class="container py-4 mb-4 bg-light">
+            <div class="container py-4 mb-4 bg-dark">
                 <div class="row">
                     <div class="col-md-4 d-grid">
-                        <a th:href="@{/producto/listado}" class="btn btn-primary">
+                        <a th:href="@{/producto/listado}" class="btn" 
+                           style="background-color: rgba(235, 52, 128, 1)">
                             <i class="fas fa-arrow-left"></i> [[#{accion.regresar}]]
                         </a>
                     </div>
                     <div class="col-md-4 d-grid">                                
                         <a th:href="@{/producto/eliminar/}+${producto.IdProducto}"
-                           class="btn btn-danger">
+                           class="btn" 
+                           style="background-color: rgba(235, 52, 128, 1)">
                             <i class="fas fa-trash"></i> [[#{accion.eliminar}]]
                         </a>
                     </div>
                     <div class="col-md-4 d-grid">
-                        <button type="submit" class="btn btn-success">
+                        <button type="submit" class="btn"
+                                style="background-color: rgba(235, 52, 128, 1)">
                             <i class="fas fa-check"></i> [[#{accion.guardar}]]
                         </button>
                     </div>

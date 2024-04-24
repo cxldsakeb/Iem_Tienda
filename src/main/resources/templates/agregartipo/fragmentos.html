@@ -11,7 +11,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
     </head>
     <body>
         <!-- 1 Sección para crear el boton de agregar... llamará a una ventana modal-->
-        <section th:fragment="botonesAgregar" class="py-4 mb-4 bg-light">
+        <section th:fragment="botonesAgregar" class="py-4 bg-dark">
             <div class="container">
                 <div class="row">
                     <div class="col-md-3">   
@@ -20,8 +20,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                             type="button" 
                             class="btn btn-dark btn-block" 
                             data-bs-toggle="modal" 
-                            data-bs-target="#agregarTipo">
-                            <i class="fas fa-plus"></i> [[#{producto.agregar}]]
+                            data-bs-target="#agregarTipo" 
+                            style="background-color: rgba(235, 52, 128, 1)">
+                            <i class="fas fa-plus"></i> Agregar Tipo
                         </button>
                     </div>
                 </div>
@@ -43,7 +44,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                         </div> 
                         <form th:action="@{/tipo-producto/guardar}" th:object="${agregarTipo}"
                               method="POST" class="was-validated" enctype="multipart/form-data">
-                            <div class="modal-body">
+                            <div class="modal-body bg-dark text-white">
                                 <div class="mb-3">
                                     <label for="descripcion">[[#{producto.descripcion}]]</label>
                                     <textarea class="form-control" name="descripcion" rows="3"></textarea>
@@ -58,8 +59,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                                     <img id="blah" src="#" alt="your image" height="200"/>
                                 </div>
                             </div>
-                            <div class="modal-footer">
-                                <button class="btn btn-primary" type="submit">Guardar</button>
+                            <div class="modal-footer bg-dark text-white">
+                                <button class="btn text-white" 
+                                        style="background-color: rgba(235, 52, 128, 1)" 
+                                        type="submit">Guardar</button>
                             </div>
                         </form>
                     </div>
@@ -68,12 +71,12 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         </section>
 
         <!-- 3 Sección principal para mostrar la informaccion de la entidad producto -->
-        <section th:fragment="listadoTipos" id="tiposProducto">
+        <section th:fragment="listadoTipos" id="tiposProducto" class="bg-dark">
             <div class="container">
                 <div class="row">
                     <div class="col-md-9">
                         <div class="card">
-                            <div class="card-header">
+                            <div class="card-header text-white bg-dark">
                                 <h4>Listado</h4>
                             </div>
                             <div th:if="${tiposProducto != null and !tiposProducto.empty}">
@@ -84,7 +87,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                                             <th>Activo</th>
                                             <th></th></tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody class="table-dark">
                                         <tr th:each="tiposProducto, contador : ${tiposProducto}">
                                             <td>[[${contador.count}]]</td>
                                             <td>[[${tiposProducto.descripcion}]]</td>
@@ -99,7 +102,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                                     </tbody>
                                 </table>
                             </div>
-                            <div class="text-center p-2" th:if="${tiposProducto == null or tiposProducto.empty}">
+                            <div class="text-center p-2 text-white bg-dark" th:if="${tiposProducto == null or tiposProducto.empty}">
                                 <span>[[#{lista.vacia}]]</span>
                             </div>
                         </div>
@@ -109,7 +112,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         </section>
 
         <!-- 4 Fragmento que se utiliza en la página modifca.html -->
-        <section th:fragment="editarTipo">
+        <section th:fragment="editarTipo" class="bg-dark">
             <div class="row">
                 <div class="col-md-2"></div>
                 <div class="col-md-8">
@@ -126,10 +129,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                                 <div class="row">
                                     <div class="col">
                                         <div class="card">
-                                            <div class="card-header">
+                                            <div class="card-header bg-dark text-white">
                                                 <h4>[[#{accion.actualizar}]]</h4>
                                             </div>
-                                            <div class="card-body">
+                                            <div class="card-body bg-dark"
+                                                 style="color: white">
                                                 <div class="mb-3">
                                                     <label for="descripcion">Descripcion</label>
                                                     <input type="text" class="form-control" 
@@ -162,21 +166,24 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
 
         <!-- 5 Fragmento que se utiliza en el fragmento anterior -->
         <section th:fragment="botonesEditar">
-            <div class="container py-4 mb-4 bg-light">
+            <div class="container py-4 mb-4 bg-dark">
                 <div class="row">
                     <div class="col-md-4 d-grid">
-                        <a th:href="@{/tipo-producto/listado}" class="btn btn-primary">
+                        <a th:href="@{/tipo-producto/listado}" class="btn"
+                           style="background-color: rgba(235, 52, 128, 1)">
                             <i class="fas fa-arrow-left"></i> [[#{accion.regresar}]]
                         </a>
                     </div>
                     <div class="col-md-4 d-grid">                                
                         <a th:href="@{/tipo-producto/eliminar/}+${tipoProducto.idTipoProducto}"
-                           class="btn btn-danger">
+                           class="btn"
+                           style="background-color: rgba(235, 52, 128, 1)">
                             <i class="fas fa-trash"></i> [[#{accion.eliminar}]]
                         </a>
                     </div>
                     <div class="col-md-4 d-grid">
-                        <button type="submit" class="btn btn-success">
+                        <button type="submit" class="btn"
+                                style="background-color: rgba(235, 52, 128, 1)">
                             <i class="fas fa-check"></i> [[#{accion.guardar}]]
                         </button>
                     </div>
